@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package omni.omni;
+
+import "google/protobuf/timestamp.proto";
+import "gogoproto/gogo.proto";
+import "omni/omni/params.proto";
+
+option go_package = "omni/x/omni/types";
+
+// Msg defines the Msg service.
+service Msg {
+  
+  // Gov handler to add whitelisted validator key
+  rpc Whitelisted (MsgWhitelisted) returns (MsgWhitelistedResponse);
+  
+  // Gov handler to remove whitelisted validator key
+  rpc Dewhitelisted (MsgDewhitelisted) returns (MsgDewhitelistedResponse);
+  
+  // Balance observation vote
+  rpc ObserveVote  (MsgObserveVote ) returns (MsgObserveVoteResponse );
+  rpc UpdateParams (MsgUpdateParams) returns (MsgUpdateParamsResponse);
+}
+message MsgWhitelisted {
+  string authority = 1;
+  string key       = 2;
+}
+
+message MsgWhitelistedResponse {
+  string code = 1;
+  string msg  = 2;
+}
+
+message MsgDewhitelisted {
+  string authority = 1;
+  string key       = 2;
+}
+
+message MsgDewhitelistedResponse {
+  string code = 1;
+  string msg  = 2;
+}
+
+message MsgObserveVote {
+  string                    creator   = 1;
+  uint64                    round     = 2;
+  string                    value     = 3 [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+  google.protobuf.Timestamp timestamp = 4 [(gogoproto.stdtime)    = true                                    , (gogoproto.nullable) = false];
+}
+
+message MsgObserveVoteResponse {
+  string code = 1;
+  string msg  = 2;
+}
+
+message MsgUpdateParams {
+  string authority = 1;
+  Params params  = 2;
+}
+
+message MsgUpdateParamsResponse {}
+

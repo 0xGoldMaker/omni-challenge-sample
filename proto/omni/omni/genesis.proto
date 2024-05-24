@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package omni.omni;
+
+import "gogoproto/gogo.proto";
+import "omni/omni/params.proto";
+import "omni/omni/balance.proto";
+import "omni/omni/whitelist.proto";
+import "omni/omni/observe_vote.proto";
+
+option go_package = "omni/x/omni/types";
+
+// GenesisState defines the omni module's genesis state.
+message GenesisState {
+           Params      params          = 1 [(gogoproto.nullable) = false];
+  repeated Balance     balanceList     = 2 [(gogoproto.nullable) = false];
+  repeated Whitelist   whitelistList   = 3 [(gogoproto.nullable) = false];
+  repeated ObserveVote observeVoteList = 4 [(gogoproto.nullable) = false];
+}
+

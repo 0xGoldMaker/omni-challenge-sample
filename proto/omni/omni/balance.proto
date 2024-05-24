@@ -1,0 +1,17 @@
+syntax = "proto3";
+package omni.omni;
+import "google/protobuf/timestamp.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "omni/x/omni/types";
+
+message Balance {
+  uint64 index = 1; 
+  string balance = 2[
+    (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int",
+    (gogoproto.nullable) = false
+  ];
+  google.protobuf.Timestamp lastUpdated = 3
+    [(gogoproto.stdtime) = true, (gogoproto.nullable) = false]; 
+}
+

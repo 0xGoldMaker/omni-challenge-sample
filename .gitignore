@@ -1,0 +1,11 @@
+vue/node_modules
+vue/dist
+release/
+.idea/
+.vscode/
+.DS_Store
+solidity/artifacts
+solidity/cache
+solidity/node_modules
+solidity/typechain
+scripts/variables.sh

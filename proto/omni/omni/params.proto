@@ -1,0 +1,21 @@
+syntax = "proto3";
+package omni.omni;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "omni/x/omni/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  // number of block epoch in refreshing balance
+	uint64 num_epochs = 1;
+  // minimum number of validators voted
+	uint64 min_consensus = 2;
+  // currnet consensus round
+  uint64 cur_round = 3;
+  // if whitelisting enabled
+  bool is_whitelist_enabled = 4;
+  // smart contract address to be monitored
+  string contract_address = 5;
+}

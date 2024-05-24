@@ -1,0 +1,89 @@
+version: 1
+accounts:
+  - name: treasury
+    coins:
+      - 9000000000000000uomni
+  - name: seed
+    coins:
+      - 9000000000000000uomni
+build:
+  main: cmd/omnid
+client:
+  openapi:
+    path: docs/static/openapi.yml
+faucet:
+  name: seed
+  coins:
+    - 1000000000000000uomni
+validators:
+  - name: treasury
+    bonded: 100000000uomni
+genesis:
+  app_state:
+    crisis:
+      constant_fee:
+        denom: uomni
+    gov:
+      deposit_params:
+        max_deposit_period: 100s
+        min_deposit:
+          - amount: "10000000"
+            denom: uomni
+      params:
+        burn_proposal_deposit_prevote: false
+        burn_vote_quorum: false
+        burn_vote_veto: true
+        max_deposit_period: 100s
+        min_deposit:
+          - amount: "10000000"
+            denom: uomni
+        min_initial_deposit_ratio: "0.000000000000000000"
+        quorum: "0.334000000000000000"
+        threshold: "0.500000000000000000"
+        veto_threshold: "0.334000000000000000"
+        voting_period: 100s
+      tally_params:
+        quorum: "0.334000000000000000"
+        threshold: "0.500000000000000000"
+        veto_threshold: "0.334000000000000000"
+      voting_params:
+        voting_period: 20s
+    mint:
+      params:
+        mint_denom: uomni
+        inflation_rate_change: "0.01"
+        inflation_max: "0.13"
+        inflation_min: "0.07"
+    slashing:
+      params:
+        signed_blocks_window: "30000"
+        min_signed_per_window: "0.05"
+        downtime_jail_duration: 600s
+        slash_fraction_double_sign: "0.05"
+        slash_fraction_downtime: "0.0001"
+    staking:
+      params:
+        bond_denom: uomni
+        unbonding_time: 1209600s
+    bank:
+      denom_metadata:
+        - base: uomni
+          denom_units:
+            - denom: uomni
+              exponent: 0
+              aliases: []
+            - denom: omni
+              exponent: 6
+              aliases: []
+          name: omni
+          symbol: omni
+          description: Native Omni token definition
+          display: omni
+    omni:
+      params:
+        num_epochs: 5
+        min_consensus: 1
+        cur_round: 0
+        is_whitelist_enabled: false
+        contract_address: "0xcc7F90c440ddBd4B082EE7eAA4e7E82E56869C4B"
+  chain_id: omnitestnet-1

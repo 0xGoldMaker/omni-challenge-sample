@@ -1,0 +1,20 @@
+syntax = "proto3";
+package omni.omni;
+
+import "google/protobuf/timestamp.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "omni/x/omni/types";
+
+message ObserveVote {
+  uint64 index = 1; 
+  string voter = 2; 
+  uint64 round = 3; 
+  string value = 4[
+    (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int",
+    (gogoproto.nullable) = false
+  ]; 
+  google.protobuf.Timestamp timestamp = 5
+  [(gogoproto.stdtime) = true, (gogoproto.nullable) = false]; 
+}
+
